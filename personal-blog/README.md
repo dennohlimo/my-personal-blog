@@ -1,16 +1,50 @@
-# React + Vite
+# Premier League — Personal Blog
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A small React blog built out of four components: a header, an about
+section, and a list of article previews.
 
-Currently, two official plugins are available:
+## Component Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```
+App
+├── Header       — renders the blog name (prop: name)
+├── About        — renders the logo image + about blurb (props: image, about)
+└── ArticleList  — renders one Article per post (prop: posts)
+    └── Article  — renders a single post's title, date, and preview
+                    (props: title, date, preview)
+```
 
-## React Compiler
+| Component     | File                            | Renders inside | Renders           | Purpose                                              |
+|---------------|----------------------------------|-----------------|--------------------|-------------------------------------------------------|
+| `App`         | `src/App.jsx`                    | —                | Header, About, ArticleList | Root component; owns the post data and passes props down |
+| `Header`      | `src/components/Header.jsx`      | App              | —                  | Displays the blog's `<h1>` title                      |
+| `About`       | `src/components/About.jsx`       | App              | —                  | Displays the logo `<img>` and an about `<p>`           |
+| `ArticleList` | `src/components/ArticleList.jsx` | App              | Article (× N)      | Loops over `posts` and renders one Article per post    |
+| `Article`     | `src/components/Article.jsx`     | ArticleList      | —                  | Displays one post's `<h3>` title, `<small>` date, `<p>` preview |
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Each component file also has a comment block at the top with the same
+info (props it expects, who renders it, what it renders) — see the
+source files for details.
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Requirements:** [Node.js](https://nodejs.org/) (v18+ recommended) and npm.
+
+1. Clone or download this project, then open a terminal in the project
+   folder (the one containing `package.json`).
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the local dev server:
+   ```bash
+   npm run dev
+   ```
+4. Open the URL printed in the terminal (usually
+   [http://localhost:5173](http://localhost:5173)) in your browser.
+
+![Blog homepage](./screenshots/homepage.png)
+*The blog's homepage — header and image.*
+
+![Article preview](./screenshots/article-preview.png)
+*A close-up of about section and article list.*
